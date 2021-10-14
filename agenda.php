@@ -10,34 +10,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 </head>
 <body>
 <?php
-// Comprobamos si se reciben datos del forumulario.
-static $output='';
+global $nombre,$tlf,$output,$contacts;
 
 if (isset($_GET['submit'])) {
-    displayForm();
-    showingValues($output);
-
-    // Aquí procesaríamos el formulario.
-} else {//
-    displayForm();
+    displayForm(showingOutput());
+    echo showingOutput();
 }
 
-function displayForm() {
-    global $nombre, $phone;
+else {
+    displayForm("");
+}
+
+function displayForm($hidden)
+{
     ?>
     <h1>Agenda</h1>
     <form>
-        <input type = "text" name = "nombre" placeholder="Name" value = "<?php echo $nombre; ?>"/>
-        <input type = "number" name = "phone" placeholder="Phone" value = "<?= $phone; ?>"/>
+        <input type = "text" name = "name" placeholder="Name"/>
+        <input type = "number" name = "phone" placeholder="Phone"/>
+        <input type = "hidden" name = "form" value = "<?= $hidden?>"/>
         <input type = "submit" name="submit" value="Submit"/>
     </form>
     <h2>Contacts</h2>
-    <?php
+<?php
 }
 
-function showingValues($output){
-    $output .= $_GET['nombre'] . " " . $_GET['phone'];
-    echo $output;
+function showingOutput(){
+    $nombre = $_GET['name'];
+    $tlf = $_GET['phone'];
+    $output = $_GET['form'];
+    $contacts = $output . $nombre . " " . $tlf . '<br>';
+    return $contacts;
 }
 ?>
 </body>
