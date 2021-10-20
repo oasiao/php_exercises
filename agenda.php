@@ -10,6 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
 </head>
 <body>
 <?php
+
 global $nombre,$tlf,$output,$contacts;
 
 if (isset($_GET['submit'])) {
@@ -30,6 +31,7 @@ function displayForm($hidden)
         <input type = "number" name = "phone" placeholder="Phone"/>
         <input type = "hidden" name = "form" value = "<?= $hidden?>"/>
         <input type = "submit" name="submit" value="Submit"/>
+
     </form>
     <h2>Contacts</h2>
 <?php
@@ -41,6 +43,7 @@ function showingOutput(){
     $output = $_GET['form'];
     $contacts = $output . $nombre . " " . $tlf . '<br>';
     return $contacts;
+
 }
 ?>
 </body>
